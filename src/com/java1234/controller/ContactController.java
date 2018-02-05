@@ -25,7 +25,7 @@ import com.java1234.service.ContactService;
 import com.java1234.util.ResponseUtil;
 
 /**
- * ½»Íù¼ÇÂ¼ControllerÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼Controllerï¿½ï¿½
  * @author Administrator
  *
  */
@@ -40,11 +40,11 @@ public class ContactController {
 	 public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:ÔÊÐíÊäÈë¿ÕÖµ£¬false:²»ÄÜÎª¿ÕÖµ
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½false:ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Öµ
 	}
 	
 	/**
-	 * ²éÑ¯½»Íù¼ÇÂ¼¼¯ºÏ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 	 * @param cusId
 	 * @param response
 	 * @return
@@ -61,12 +61,13 @@ public class ContactController {
 		jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd"));
 		JSONArray jsonArray=JSONArray.fromObject(contactList,jsonConfig);
 		result.put("rows", jsonArray);
+		System.out.println(result);
 		ResponseUtil.write(response, result);
 		return null;
 	}
 	
 	/**
-	 * Ìí¼Ó½»Íù¼ÇÂ¼
+	 * ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param contact
 	 * @param response
 	 * @return
@@ -74,14 +75,14 @@ public class ContactController {
 	 */
 	@RequestMapping("/save")
 	public String save(Contact contact,HttpServletResponse response)throws Exception{
-		int resultTotal=0; // ²Ù×÷µÄ¼ÇÂ¼ÌõÊý
+		int resultTotal=0; // ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 		if(contact.getId()==null){
 			resultTotal=contactService.addContact(contact);
 		}else{
 			resultTotal=contactService.updateContact(contact);
 		}
 		JSONObject result=new JSONObject();
-		if(resultTotal>0){ // Ö´ÐÐ³É¹¦
+		if(resultTotal>0){ // Ö´ï¿½Ð³É¹ï¿½
 			result.put("success", true);
 		}else{
 			result.put("success", false);
@@ -91,7 +92,7 @@ public class ContactController {
 	}
 	
 	/**
-	 * É¾³ý½»Íù¼ÇÂ¼
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param id
 	 * @param response
 	 * @return
